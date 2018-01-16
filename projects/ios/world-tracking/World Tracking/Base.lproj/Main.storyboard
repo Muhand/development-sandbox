@@ -52,9 +52,9 @@
                                     <constraint firstAttribute="width" constant="80" id="QNS-Kn-hzp"/>
                                     <constraint firstAttribute="height" constant="80" id="Ygq-lb-GYq"/>
                                 </constraints>
-                                <state key="normal" title="Capsule"/>
+                                <state key="normal" title="Home"/>
                                 <connections>
-                                    <action selector="capsule:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jw7-lc-jt7"/>
+                                    <action selector="home:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QtU-X2-Jfm"/>
                                 </connections>
                             </button>
                         </subviews>
