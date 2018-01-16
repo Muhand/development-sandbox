@@ -41,18 +41,32 @@ class ViewController: UIViewController {
         self.sceneView.scene.rootNode.addChildNode(node)
         
     }
-    @IBAction func capsule(_ sender: Any) {
-        let node = SCNNode()
-//        node.geometry = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.03)
-        node.geometry = SCNCapsule(capRadius: 0.05, height: 0.3)
-        node.geometry?.firstMaterial?.specular.contents = UIColor.white
-        node.geometry?.firstMaterial?.diffuse.contents = UIColor.green
-        let x = randomNumbers(firstNum: -0.3, secondNum: 0.3)
-        let y = randomNumbers(firstNum: -0.3, secondNum: 0.3)
-        let z = randomNumbers(firstNum: -0.3, secondNum: 0.3)
+    @IBAction func home(_ sender: Any) {
+        //Create nodes
+        let houseWalls = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0))
+        let attic = SCNNode(geometry: SCNPyramid(width: 0.1, height: 0.08, length: 0.1))
+        let door = SCNNode(geometry: SCNPlane(width: 0.03, height: 0.06))
         
-        node.position = SCNVector3(0,0,-0.3)
-        self.sceneView.scene.rootNode.addChildNode(node)
+        //Start setting the nodes properties such as colors
+        houseWalls.geometry?.firstMaterial?.diffuse.contents = UIColor.gray
+        houseWalls.geometry?.firstMaterial?.specular.contents = UIColor.white
+        attic.geometry?.firstMaterial?.diffuse.contents = UIColor.green
+        attic.geometry?.firstMaterial?.specular.contents = UIColor.white
+        door.geometry?.firstMaterial?.diffuse.contents = UIColor.brown
+        door.geometry?.firstMaterial?.specular.contents = UIColor.white
+        
+        //Set the positioning
+        houseWalls.position = SCNVector3(-0.2,-0.2,-0.2)
+        attic.position = SCNVector3(0,0.05,0)
+        door.position = SCNVector3(0,-0.02,0.052)
+        
+        //Add the nodes
+        self.sceneView.scene.rootNode.addChildNode(houseWalls)
+        houseWalls.addChildNode(attic)
+        houseWalls.addChildNode(door)
+        
+        //Rotate the house
+        houseWalls.eulerAngles = SCNVector3(0,Float(45.degreesToRadians),0)
     }
     
     @IBAction func reset(_ sender: Any) {
@@ -70,6 +84,10 @@ class ViewController: UIViewController {
     func randomNumbers(firstNum: CGFloat, secondNum: CGFloat) -> CGFloat {
         return CGFloat(arc4random()) / CGFloat(UINT32_MAX) * abs(firstNum - secondNum) + min(firstNum, secondNum)
     }
-
 }
+extension Int {
+    
+    var degreesToRadians: Double { return Double(self) * .pi/180}
+}
+
 
