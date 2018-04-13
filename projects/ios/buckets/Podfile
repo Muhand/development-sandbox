@@ -7,4 +7,5 @@ target 'buckets' do
 
   # Pods for buckets
   pod 'SwiftyJSON' #JSON parsing
+  pod 'Moya', '~> 10.0' #Network Abstraction layer
 end
