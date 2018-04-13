@@ -6,5 +6,5 @@ target 'buckets' do
   use_frameworks!
 
   # Pods for buckets
-
+  pod 'SwiftyJSON' #JSON parsing
 end

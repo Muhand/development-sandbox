@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		54BCE97815AC66AE02E5A42C /* Pods_buckets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC197BBAC25B8F73592597BD /* Pods_buckets.framework */; };
 		B6133465207FEC5D00055158 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6133464207FEC5D00055158 /* AppDelegate.swift */; };
 		B6133467207FEC5D00055158 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6133466207FEC5D00055158 /* ViewController.swift */; };
 		B613346A207FEC5D00055158 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6133468207FEC5D00055158 /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5F2FC8EB32C27153D1B06B2F /* Pods-buckets.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-buckets.debug.xcconfig"; path = "Pods/Target Support Files/Pods-buckets/Pods-buckets.debug.xcconfig"; sourceTree = "<group>"; };
 		B6133461207FEC5C00055158 /* buckets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = buckets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6133464207FEC5D00055158 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6133466207FEC5D00055158 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +24,8 @@
 		B613346B207FEC5D00055158 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B613346E207FEC5D00055158 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B6133470207FEC5D00055158 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED62BE034F310C9646CE1D66 /* Pods-buckets.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-buckets.release.xcconfig"; path = "Pods/Target Support Files/Pods-buckets/Pods-buckets.release.xcconfig"; sourceTree = "<group>"; };
+		FC197BBAC25B8F73592597BD /* Pods_buckets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_buckets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54BCE97815AC66AE02E5A42C /* Pods_buckets.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +45,8 @@
 			children = (
 				B6133463207FEC5C00055158 /* buckets */,
 				B6133462207FEC5C00055158 /* Products */,
+				BAFC8C9D80785092BF18DE5A /* Pods */,
+				E85135C93633F33A3849C16D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +71,23 @@
 			path = buckets;
 			sourceTree = "<group>";
 		};
+		BAFC8C9D80785092BF18DE5A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5F2FC8EB32C27153D1B06B2F /* Pods-buckets.debug.xcconfig */,
+				ED62BE034F310C9646CE1D66 /* Pods-buckets.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E85135C93633F33A3849C16D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FC197BBAC25B8F73592597BD /* Pods_buckets.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B6133473207FEC5D00055158 /* Build configuration list for PBXNativeTarget "buckets" */;
 			buildPhases = (
+				3EB69F36659F25667E1C5E3E /* [CP] Check Pods Manifest.lock */,
 				B613345D207FEC5C00055158 /* Sources */,
 				B613345E207FEC5C00055158 /* Frameworks */,
 				B613345F207FEC5C00055158 /* Resources */,
+				60BC01F88B58B2A9B988B99D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -129,6 +155,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3EB69F36659F25667E1C5E3E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-buckets-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		60BC01F88B58B2A9B988B99D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-buckets/Pods-buckets-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-buckets/Pods-buckets-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B613345D207FEC5C00055158 /* Sources */ = {
@@ -278,15 +343,13 @@
 		};
 		B6133474207FEC5D00055158 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F2FC8EB32C27153D1B06B2F /* Pods-buckets.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3Q76DGNCRR;
 				INFOPLIST_FILE = buckets/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.muhandjumah.buckets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -296,15 +359,13 @@
 		};
 		B6133475207FEC5D00055158 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED62BE034F310C9646CE1D66 /* Pods-buckets.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3Q76DGNCRR;
 				INFOPLIST_FILE = buckets/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.muhandjumah.buckets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
