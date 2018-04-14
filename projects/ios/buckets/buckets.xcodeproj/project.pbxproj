@@ -13,8 +13,12 @@
 		B613346A207FEC5D00055158 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6133468207FEC5D00055158 /* Main.storyboard */; };
 		B613346C207FEC5D00055158 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B613346B207FEC5D00055158 /* Assets.xcassets */; };
 		B613346F207FEC5D00055158 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B613346D207FEC5D00055158 /* LaunchScreen.storyboard */; };
+		B677902720824D5800893236 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B677902620824D5800893236 /* NetworkService.swift */; };
+		B677902920824FB600893236 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B677902820824FB600893236 /* Helper.swift */; };
+		B69E92E0208274C400790AE7 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B69E92DF208274C400790AE7 /* Info.plist */; };
+		B69E92E2208275E800790AE7 /* ToolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E92E1208275E800790AE7 /* ToolsViewController.swift */; };
 		B6A0603A20812D4800F16624 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A0603920812D4800F16624 /* ViewModel.swift */; };
-		B6A0603C20812E7F00F16624 /* UsersClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A0603B20812E7F00F16624 /* UsersClient.swift */; };
+		B6A0603C20812E7F00F16624 /* CrashAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A0603B20812E7F00F16624 /* CrashAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,9 +29,12 @@
 		B6133469207FEC5D00055158 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B613346B207FEC5D00055158 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B613346E207FEC5D00055158 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		B6133470207FEC5D00055158 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B677902620824D5800893236 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		B677902820824FB600893236 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		B69E92DF208274C400790AE7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = buckets/misc/Info.plist; sourceTree = SOURCE_ROOT; };
+		B69E92E1208275E800790AE7 /* ToolsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsViewController.swift; sourceTree = "<group>"; };
 		B6A0603920812D4800F16624 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		B6A0603B20812E7F00F16624 /* UsersClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersClient.swift; sourceTree = "<group>"; };
+		B6A0603B20812E7F00F16624 /* CrashAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashAPI.swift; sourceTree = "<group>"; };
 		ED62BE034F310C9646CE1D66 /* Pods-buckets.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-buckets.release.xcconfig"; path = "Pods/Target Support Files/Pods-buckets/Pods-buckets.release.xcconfig"; sourceTree = "<group>"; };
 		FC197BBAC25B8F73592597BD /* Pods_buckets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_buckets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -65,16 +72,68 @@
 		B6133463207FEC5C00055158 /* buckets */ = {
 			isa = PBXGroup;
 			children = (
-				B6133464207FEC5D00055158 /* AppDelegate.swift */,
-				B6133466207FEC5D00055158 /* ViewController.swift */,
-				B6133468207FEC5D00055158 /* Main.storyboard */,
-				B613346B207FEC5D00055158 /* Assets.xcassets */,
-				B613346D207FEC5D00055158 /* LaunchScreen.storyboard */,
-				B6133470207FEC5D00055158 /* Info.plist */,
-				B6A0603920812D4800F16624 /* ViewModel.swift */,
-				B6A0603B20812E7F00F16624 /* UsersClient.swift */,
+				B677902E2082735C00893236 /* storyboards */,
+				B677902A2082731300893236 /* View Controllers */,
+				B677902D2082734800893236 /* View Models */,
+				B677902B2082732500893236 /* Networking */,
+				B677902C2082733200893236 /* Other */,
+				B69E92DD208273C600790AE7 /* misc */,
 			);
 			path = buckets;
+			sourceTree = "<group>";
+		};
+		B677902A2082731300893236 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B6133466207FEC5D00055158 /* ViewController.swift */,
+				B69E92E1208275E800790AE7 /* ToolsViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		B677902B2082732500893236 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				B6A0603B20812E7F00F16624 /* CrashAPI.swift */,
+				B677902620824D5800893236 /* NetworkService.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		B677902C2082733200893236 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				B6133464207FEC5D00055158 /* AppDelegate.swift */,
+				B677902820824FB600893236 /* Helper.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		B677902D2082734800893236 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				B6A0603920812D4800F16624 /* ViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		B677902E2082735C00893236 /* storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				B6133468207FEC5D00055158 /* Main.storyboard */,
+				B613346D207FEC5D00055158 /* LaunchScreen.storyboard */,
+			);
+			path = storyboards;
+			sourceTree = "<group>";
+		};
+		B69E92DD208273C600790AE7 /* misc */ = {
+			isa = PBXGroup;
+			children = (
+				B613346B207FEC5D00055158 /* Assets.xcassets */,
+				B69E92DF208274C400790AE7 /* Info.plist */,
+			);
+			name = misc;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		BAFC8C9D80785092BF18DE5A /* Pods */ = {
@@ -154,6 +213,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B69E92E0208274C400790AE7 /* Info.plist in Resources */,
 				B613346F207FEC5D00055158 /* LaunchScreen.storyboard in Resources */,
 				B613346C207FEC5D00055158 /* Assets.xcassets in Resources */,
 				B613346A207FEC5D00055158 /* Main.storyboard in Resources */,
@@ -212,10 +272,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B677902720824D5800893236 /* NetworkService.swift in Sources */,
+				B677902920824FB600893236 /* Helper.swift in Sources */,
 				B6133467207FEC5D00055158 /* ViewController.swift in Sources */,
-				B6A0603C20812E7F00F16624 /* UsersClient.swift in Sources */,
+				B6A0603C20812E7F00F16624 /* CrashAPI.swift in Sources */,
 				B6A0603A20812D4800F16624 /* ViewModel.swift in Sources */,
 				B6133465207FEC5D00055158 /* AppDelegate.swift in Sources */,
+				B69E92E2208275E800790AE7 /* ToolsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,8 +425,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3Q76DGNCRR;
-				INFOPLIST_FILE = buckets/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				INFOPLIST_FILE = "$(SRCROOT)/buckets/misc/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.muhandjumah.buckets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -378,8 +444,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3Q76DGNCRR;
-				INFOPLIST_FILE = buckets/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				INFOPLIST_FILE = "$(SRCROOT)/buckets/misc/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.muhandjumah.buckets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
