@@ -1,0 +1,6 @@
+framework module Pods_buckets {
+  umbrella header "Pods-buckets-umbrella.h"
+
+  export *
+  module * { export * }
+}
