@@ -1,8 +1,14 @@
 import Foundation
 import SwiftyJSON
-
+import SocketIO
 
 class Helper {
+    
+    ///////////////////////////////
+    //Global variables
+    ////////////////////////////////
+    static var manager: SocketManager!
+    static var socket: SocketIOClient!
     
     static var loggedInUser: User?
     static var downloadedWorld: World?

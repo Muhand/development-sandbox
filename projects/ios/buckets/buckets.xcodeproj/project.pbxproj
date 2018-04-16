@@ -19,6 +19,7 @@
 		B69E92E2208275E800790AE7 /* ToolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E92E1208275E800790AE7 /* ToolsViewController.swift */; };
 		B6A0603A20812D4800F16624 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A0603920812D4800F16624 /* ViewModel.swift */; };
 		B6A0603C20812E7F00F16624 /* CrashAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A0603B20812E7F00F16624 /* CrashAPI.swift */; };
+		B6A9F2DF20829643009FCA0C /* ReconnectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A9F2DE20829643009FCA0C /* ReconnectingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		B69E92E1208275E800790AE7 /* ToolsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsViewController.swift; sourceTree = "<group>"; };
 		B6A0603920812D4800F16624 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		B6A0603B20812E7F00F16624 /* CrashAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashAPI.swift; sourceTree = "<group>"; };
+		B6A9F2DE20829643009FCA0C /* ReconnectingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReconnectingViewController.swift; sourceTree = "<group>"; };
 		ED62BE034F310C9646CE1D66 /* Pods-buckets.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-buckets.release.xcconfig"; path = "Pods/Target Support Files/Pods-buckets/Pods-buckets.release.xcconfig"; sourceTree = "<group>"; };
 		FC197BBAC25B8F73592597BD /* Pods_buckets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_buckets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -87,6 +89,7 @@
 			children = (
 				B6133466207FEC5D00055158 /* ViewController.swift */,
 				B69E92E1208275E800790AE7 /* ToolsViewController.swift */,
+				B6A9F2DE20829643009FCA0C /* ReconnectingViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 			files = (
 				B677902720824D5800893236 /* NetworkService.swift in Sources */,
 				B677902920824FB600893236 /* Helper.swift in Sources */,
+				B6A9F2DF20829643009FCA0C /* ReconnectingViewController.swift in Sources */,
 				B6133467207FEC5D00055158 /* ViewController.swift in Sources */,
 				B6A0603C20812E7F00F16624 /* CrashAPI.swift in Sources */,
 				B6A0603A20812D4800F16624 /* ViewModel.swift in Sources */,
@@ -430,7 +434,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3Q76DGNCRR;
 				INFOPLIST_FILE = "$(SRCROOT)/buckets/misc/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.muhandjumah.buckets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -446,7 +453,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3Q76DGNCRR;
 				INFOPLIST_FILE = "$(SRCROOT)/buckets/misc/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.muhandjumah.buckets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

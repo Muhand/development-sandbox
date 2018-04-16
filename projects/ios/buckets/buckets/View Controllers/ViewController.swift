@@ -25,7 +25,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.present(alert, animated: true)
         } else {
             NetworkService.standard.request(target: .world(security: (selectedUser?.loginToken)!), success: { (data) in
-                let myGroup = DispatchGroup()
                 
                 Helper.loggedInUser = self.selectedUser!
                 let worldJSON = JSON(data)
@@ -61,7 +60,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 
                 guard let tools = self.storyboard?.instantiateViewController(withIdentifier: "tools") as? ToolsViewController else {return}
                 
-                self.present(tools, animated: true, completion: nil)
+                self.navigationController?.pushViewController(tools, animated: true)
+                
 
 
                 
@@ -78,6 +78,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.tableView.delegate = self
         viewModel.fetchUsers {
             self.tableView.reloadData()
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if (Helper.socket != nil && Helper.socket.status == .connected) {
+            print(Helper.socket.status)
+            Helper.socket.disconnect()
         }
     }
 
