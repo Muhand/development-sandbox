@@ -321,7 +321,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WK5-Nn-na9">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WK5-Nn-na9">
                                 <rect key="frame" x="0.0" y="20" width="375" height="575"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" red="1" green="0.98254394133318956" blue="0.93548640301693098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -348,6 +348,9 @@
                                         <state key="normal" title="Send">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="newMessageAction:" destination="gYc-wV-OHw" eventType="touchUpInside" id="rD7-HW-eDK"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2yO-5o-5Ze">
                                         <rect key="frame" x="296" y="11" width="27" height="24"/>
@@ -359,6 +362,9 @@
                                         <state key="normal" title="Button" image="canera_24x24">
                                             <color key="titleColor" red="1" green="0.96862745098039216" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="newImageAction:" destination="gYc-wV-OHw" eventType="touchUpInside" id="lOm-kR-2t3"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.97647058823529409" blue="0.32549019607843138" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -380,17 +386,20 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="WK5-Nn-na9" firstAttribute="trailing" secondItem="ftM-KL-dqI" secondAttribute="trailing" id="7i8-gh-bzd"/>
-                            <constraint firstItem="ql9-1q-rkg" firstAttribute="top" secondItem="pGS-aZ-7CW" secondAttribute="bottom" constant="-70" id="7kg-dV-hML"/>
+                            <constraint firstItem="WK5-Nn-na9" firstAttribute="trailing" secondItem="pGS-aZ-7CW" secondAttribute="trailing" id="7i8-gh-bzd"/>
                             <constraint firstItem="ql9-1q-rkg" firstAttribute="bottom" secondItem="pGS-aZ-7CW" secondAttribute="bottom" id="Cf3-JY-ANb"/>
-                            <constraint firstItem="WK5-Nn-na9" firstAttribute="leading" secondItem="ftM-KL-dqI" secondAttribute="leading" id="LDT-pI-dMa"/>
+                            <constraint firstItem="WK5-Nn-na9" firstAttribute="leading" secondItem="pGS-aZ-7CW" secondAttribute="leading" id="LDT-pI-dMa"/>
                             <constraint firstItem="ql9-1q-rkg" firstAttribute="top" secondItem="WK5-Nn-na9" secondAttribute="bottom" constant="2" id="gDH-Hl-nLm"/>
-                            <constraint firstItem="WK5-Nn-na9" firstAttribute="top" secondItem="ftM-KL-dqI" secondAttribute="top" id="hPS-cI-KhE"/>
+                            <constraint firstItem="WK5-Nn-na9" firstAttribute="top" secondItem="pGS-aZ-7CW" secondAttribute="top" constant="20" id="hPS-cI-KhE"/>
                             <constraint firstItem="ql9-1q-rkg" firstAttribute="trailing" secondItem="pGS-aZ-7CW" secondAttribute="trailing" id="lA1-Xa-Dqs"/>
                             <constraint firstItem="ql9-1q-rkg" firstAttribute="leading" secondItem="pGS-aZ-7CW" secondAttribute="leading" id="wEZ-b5-83J"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ftM-KL-dqI"/>
                     </view>
+                    <connections>
+                        <outlet property="messagesTableView" destination="WK5-Nn-na9" id="ImX-a3-GYw"/>
+                        <outlet property="textMessageField" destination="Q9I-eq-Uhe" id="eg2-Uv-ugg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4bb-uL-Qq1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
