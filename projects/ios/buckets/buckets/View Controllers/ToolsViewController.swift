@@ -19,7 +19,9 @@ class ToolsViewController: UIViewController {
             
             self.present(alert, animated: true)
         } else {
+            guard let chat = self.storyboard?.instantiateViewController(withIdentifier: "chat") as? ChatViewController else {return}
             
+            self.navigationController?.pushViewController(chat, animated: true)
         }
     }
     
@@ -30,7 +32,7 @@ class ToolsViewController: UIViewController {
         titleLabel.text = "Welcome \(Helper.loggedInUser?.first_name ?? "test")"
         
         //Connect to the socket
-        Helper.manager = SocketManager(socketURL: URL(string: "http://192.168.7.24:3000")!, config: [.log(false), .compress])
+        Helper.manager = SocketManager(socketURL: URL(string: Helper.server.serverEnv)!, config: [.log(false), .compress])
         Helper.socket = Helper.manager.defaultSocket
         Helper.socket.connect()
         Helper.socket.on(clientEvent: .connect) { (data, ack) in
