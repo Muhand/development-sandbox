@@ -54,6 +54,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         print("ORIGINAL \(self.view.frame.origin.y)")
         
         handleSocketEvents()
+        let downloadChatObject: [String: Any] = [
+            "sceneId": Helper.loggedInUser?.sceneId
+        ]
+        
+        Helper.socket.emit("downloadChat", downloadChatObject)
         
     }
 
@@ -115,6 +120,28 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             let recievedMessage = Message(text: text, isMe: false)
             self.insertMessage(message: recievedMessage)
+        }
+        
+        Helper.socket.on("chatHistory") { (data, ack) in
+            let data = JSON(data.first as Any)
+            print(data)
+            for messageJSON in data["messages"].arrayValue {
+                let text = messageJSON["text"].stringValue
+                let timestamp = messageJSON["timestamp"].stringValue
+                let by = messageJSON["by"].stringValue
+                print(text)
+                
+                if by == Helper.loggedInUser?.id {
+                    let recievedMessage = Message(text: text, isMe: true)
+                    self.insertMessage(message: recievedMessage)
+                } else {
+                    let recievedMessage = Message(text: text, isMe: false)
+                    self.insertMessage(message: recievedMessage)
+                }
+            }
+            
+//            let recievedMessage = Message(text: text, isMe: false)
+//            self.insertMessage(message: recievedMessage)
         }
     }
     func insertMessage(message:Message) {
