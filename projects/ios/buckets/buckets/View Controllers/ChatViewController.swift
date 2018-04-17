@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -52,6 +53,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         print("ORIGINAL \(self.view.frame.origin.y)")
         
+        handleSocketEvents()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,19 +63,17 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func sendMessage(message: Message) {
-        
-        messages.append(message)
-        self.messagesTableView.beginUpdates()
-        let indexPath:IndexPath = IndexPath(row:(self.messages.count - 1), section:0)
-        self.messagesTableView.insertRows(at: [indexPath], with: .bottom)
-        self.messagesTableView.endUpdates()
-        self.messagesTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-//        self.messagesTableView.reloadData()
-        
+        insertMessage(message: message)
         
         //Now send the message through socket
-        Helper.socket.emit("new_message", message.textMessage!)
+        let messageObject: [String: Any] = [
+            "text": message.textMessage!,
+            "sceneId": Helper.loggedInUser?.sceneId
+        ]
+        
+        Helper.socket.emit("newMessage", messageObject)
     }
+    
 
     func setupTableView() {
         self.messagesTableView.dataSource = self
@@ -100,6 +101,31 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     ///////////////////////////////////
     // Helper functions
     ///////////////////////////////////
+    func handleSocketEvents() {
+        Helper.socket.on("messageRecieved") { (data, ack) in
+            let data = JSON(data.first as Any)
+            let text = data["text"].stringValue
+            let timestamp = data["timestamp"].stringValue
+            
+//            guard let decodedData = Data(base64Encoded: imageData, options: .ignoreUnknownCharacters),
+//                let image = UIImage(data: decodedData)
+//                else { return }
+//
+//            self.view?.addImage(image)
+            
+            let recievedMessage = Message(text: text, isMe: false)
+            self.insertMessage(message: recievedMessage)
+        }
+    }
+    func insertMessage(message:Message) {
+        messages.append(message)
+        self.messagesTableView.beginUpdates()
+        let indexPath:IndexPath = IndexPath(row:(self.messages.count - 1), section:0)
+        self.messagesTableView.insertRows(at: [indexPath], with: .bottom)
+        self.messagesTableView.endUpdates()
+        self.messagesTableView.scrollToRow(at: indexPath, at: .bottom, animated: message.isMe)
+        //        self.messagesTableView.reloadData()
+    }
     @objc func keyboardWillShow(notification: NSNotification) {
         if let _ = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size {
             if self.view.frame.origin.y == 0{
