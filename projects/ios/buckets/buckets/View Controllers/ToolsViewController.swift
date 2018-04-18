@@ -12,16 +12,17 @@ import SocketIO
 class ToolsViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBAction func connectToChatAction(_ sender: Any) {
-        if Helper.loggedInUser?.sceneId == "" {
-            let alert = UIAlertController(title: "Information", message: "This user belongs to no scene; therefore, you have no chat room", preferredStyle: .alert)
+        if Helper.loggedInUser?.sceneId == "" && Helper.loggedInUser?.crashing.count == 0 {
+            let alert = UIAlertController(title: "Information", message: "This user belongs to no scene, nor is he crashing any scene; therefore, a chat room can not be presented", preferredStyle: .alert)
             
             alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
             
             self.present(alert, animated: true)
         } else {
-            guard let chat = self.storyboard?.instantiateViewController(withIdentifier: "chat") as? ChatViewController else {return}
+            //Present all the available scenes to chat, my secene and crashed scenes
+            guard let availableChat = self.storyboard?.instantiateViewController(withIdentifier: "availableChat") as? AvailableChatroomsViewController else {return}
             
-            self.navigationController?.pushViewController(chat, animated: true)
+            self.navigationController?.pushViewController(availableChat, animated: true)
         }
     }
     

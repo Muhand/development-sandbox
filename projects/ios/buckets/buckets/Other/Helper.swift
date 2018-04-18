@@ -14,6 +14,7 @@ class Helper {
     static var loggedInUser: User?
     static var downloadedWorld: World?
     static var server = Server()
+    static var selectedSceneID:String?
     
     struct User {
         var id: String
