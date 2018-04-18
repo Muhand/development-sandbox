@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
     ////////////////////////////
@@ -19,6 +19,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     struct TableViewCellIDS {
         static let newMessage = "newMessageID"
     }
+    var imagePicker = UIImagePickerController()
+    var chosenImage = UIImage()
     
     ////////////////////////////
     // Outlets
@@ -37,7 +39,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func newImageAction(_ sender: Any) {
-    
+        if(UIImagePickerController.isSourceTypeAvailable(.photoLibrary)) {
+            imagePicker.delegate = self
+            imagePicker.sourceType = .photoLibrary;
+            imagePicker.allowsEditing = false
+            
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+
     }
     
     override func viewDidLoad() {
@@ -102,6 +111,40 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+//        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+//
+////            let newSize = CGSize(width: 220, height: 260)
+////            let f = resizeImage(image: pickedImage, targetSize: newSize)
+//
+////            let senderNameTmp = "Me"
+////            let isMeTmp = true
+////            let newMessage = ImageTextMessage(image: f, senderName: senderNameTmp, isMe: isMeTmp)
+//
+//            //Append the new message
+////            messages.append(newMessage)
+//
+//            //Refresh the table
+////            messagesTableView.reloadData()
+//
+////            let imageData = UIImagePNGRepresentation(f)
+////            let base64encoding = imageData?.base64EncodedString(options: .lineLength64Characters)
+//
+////            Helper.socket.emit("new_image", base64encoding!)
+//        }
+        
+        guard let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {return}
+        
+        dismiss(animated: true, completion: nil)
+        
+        //Navigate to sendImageView
+        guard let sendImage = self.storyboard?.instantiateViewController(withIdentifier: "sendImage") as? SendImageViewController else {return}
+        
+        sendImage.chosenImage = pickedImage
+        
+        self.navigationController?.pushViewController(sendImage, animated: true)
+    }
+    
     ///////////////////////////////////
     // Helper functions
     ///////////////////////////////////
@@ -143,6 +186,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 //            self.insertMessage(message: recievedMessage)
         }
     }
+    
     func insertMessage(message:Message) {
         messages.append(message)
         self.messagesTableView.beginUpdates()
@@ -152,6 +196,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.messagesTableView.scrollToRow(at: indexPath, at: .bottom, animated: message.isMe)
         //        self.messagesTableView.reloadData()
     }
+    
     @objc func keyboardWillShow(notification: NSNotification) {
         if let _ = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size {
             if self.view.frame.origin.y == 0{

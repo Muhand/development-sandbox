@@ -435,6 +435,97 @@
             </objects>
             <point key="canvasLocation" x="3377" y="134"/>
         </scene>
+        <!--Send Image View Controller-->
+        <scene sceneID="inN-B1-HIb">
+            <objects>
+                <viewController storyboardIdentifier="sendImage" id="XHi-QW-PRO" customClass="SendImageViewController" customModule="buckets" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MDD-WG-LnB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U0S-Q8-Pob">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mrs-an-uIq" userLabel="Top">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="81"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mH7-S3-rq4">
+                                        <rect key="frame" x="8" y="44" width="59" height="33"/>
+                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelChosenImageAction:" destination="XHi-QW-PRO" eventType="touchUpInside" id="Dvi-wy-Mql"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.25" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="mH7-S3-rq4" firstAttribute="leading" secondItem="Mrs-an-uIq" secondAttribute="leading" constant="8" id="7xk-NQ-z9e"/>
+                                    <constraint firstAttribute="height" constant="81" id="PUK-4O-vwk"/>
+                                    <constraint firstItem="mH7-S3-rq4" firstAttribute="top" secondItem="Mrs-an-uIq" secondAttribute="top" constant="44" id="t5k-wD-3zM"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mHL-4D-Lqg" userLabel="Bottom">
+                                <rect key="frame" x="0.0" y="578" width="375" height="89"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LW3-50-Azs">
+                                        <rect key="frame" x="13" y="31" width="290" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="290" id="TLc-2R-0UR"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xny-Lq-FYT">
+                                        <rect key="frame" x="317" y="28" width="44" height="33"/>
+                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
+                                        <state key="normal" title="Send">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sendChosenImageAction:" destination="XHi-QW-PRO" eventType="touchUpInside" id="aHK-to-D27"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.25395408163265304" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="LW3-50-Azs" firstAttribute="leading" secondItem="mHL-4D-Lqg" secondAttribute="leading" constant="13" id="5Tg-R3-1T9"/>
+                                    <constraint firstAttribute="bottom" secondItem="xny-Lq-FYT" secondAttribute="bottom" constant="28" id="CQ9-OT-8TJ"/>
+                                    <constraint firstItem="xny-Lq-FYT" firstAttribute="leading" secondItem="LW3-50-Azs" secondAttribute="trailing" constant="14" id="LAV-TZ-51h"/>
+                                    <constraint firstAttribute="bottom" secondItem="LW3-50-Azs" secondAttribute="bottom" constant="28" id="TCu-2d-Rvs"/>
+                                    <constraint firstAttribute="trailing" secondItem="xny-Lq-FYT" secondAttribute="trailing" constant="14" id="UM4-tl-Jp9"/>
+                                    <constraint firstAttribute="height" constant="89" id="oJX-Js-7A3"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="U0S-Q8-Pob" firstAttribute="top" secondItem="MDD-WG-LnB" secondAttribute="top" id="3c6-zQ-i9z"/>
+                            <constraint firstItem="U0S-Q8-Pob" firstAttribute="bottom" secondItem="MDD-WG-LnB" secondAttribute="bottom" id="AS9-c9-HCb"/>
+                            <constraint firstItem="mHL-4D-Lqg" firstAttribute="trailing" secondItem="MDD-WG-LnB" secondAttribute="trailing" id="LLQ-EP-fOg"/>
+                            <constraint firstItem="Mrs-an-uIq" firstAttribute="leading" secondItem="MDD-WG-LnB" secondAttribute="leading" id="VeQ-85-AhU"/>
+                            <constraint firstItem="U0S-Q8-Pob" firstAttribute="leading" secondItem="MDD-WG-LnB" secondAttribute="leading" id="Zkm-UM-Zbr"/>
+                            <constraint firstItem="mHL-4D-Lqg" firstAttribute="bottom" secondItem="MDD-WG-LnB" secondAttribute="bottom" id="c4o-aq-zEd"/>
+                            <constraint firstItem="U0S-Q8-Pob" firstAttribute="trailing" secondItem="MDD-WG-LnB" secondAttribute="trailing" id="qa0-GT-moc"/>
+                            <constraint firstItem="Mrs-an-uIq" firstAttribute="trailing" secondItem="MDD-WG-LnB" secondAttribute="trailing" id="qlX-js-nNT"/>
+                            <constraint firstItem="mHL-4D-Lqg" firstAttribute="leading" secondItem="MDD-WG-LnB" secondAttribute="leading" id="r27-GY-0FD"/>
+                            <constraint firstItem="Mrs-an-uIq" firstAttribute="top" secondItem="MDD-WG-LnB" secondAttribute="top" id="uYg-Q4-7e5"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5ga-uA-hOJ"/>
+                    </view>
+                    <connections>
+                        <outlet property="bottomViewConstraint" destination="c4o-aq-zEd" id="eef-CQ-T05"/>
+                        <outlet property="chosenImageCaption" destination="LW3-50-Azs" id="IWa-HK-Scr"/>
+                        <outlet property="chosenImageView" destination="U0S-Q8-Pob" id="LBY-Ns-vvH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yN4-nq-fgD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4120.8000000000002" y="133.00492610837438"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="zFM-LV-UEC">
             <objects>
