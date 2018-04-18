@@ -313,6 +313,36 @@
             </objects>
             <point key="canvasLocation" x="1883" y="860"/>
         </scene>
+        <!--Available Chatrooms View Controller-->
+        <scene sceneID="56h-4r-49Q">
+            <objects>
+                <viewController storyboardIdentifier="availableChat" id="kHV-hp-5xc" customClass="AvailableChatroomsViewController" customModule="buckets" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="J7G-bv-vsY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lkU-bD-dvh">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="lkU-bD-dvh" firstAttribute="top" secondItem="J7G-bv-vsY" secondAttribute="top" id="7GL-Ph-hBo"/>
+                            <constraint firstItem="lkU-bD-dvh" firstAttribute="leading" secondItem="PLm-YC-V6g" secondAttribute="leading" id="7vT-EE-iD6"/>
+                            <constraint firstItem="lkU-bD-dvh" firstAttribute="bottom" secondItem="PLm-YC-V6g" secondAttribute="bottom" id="NfJ-2w-A96"/>
+                            <constraint firstItem="lkU-bD-dvh" firstAttribute="trailing" secondItem="PLm-YC-V6g" secondAttribute="trailing" id="SZO-7i-Mgy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="PLm-YC-V6g"/>
+                    </view>
+                    <connections>
+                        <outlet property="scenesTableView" destination="lkU-bD-dvh" id="c88-0i-ueB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m1e-b8-H5d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2636" y="133.5832083958021"/>
+        </scene>
         <!--Chat View Controller-->
         <scene sceneID="Bpn-83-Q96">
             <objects>
@@ -403,7 +433,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4bb-uL-Qq1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2640.8000000000002" y="133.5832083958021"/>
+            <point key="canvasLocation" x="3377" y="134"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zFM-LV-UEC">

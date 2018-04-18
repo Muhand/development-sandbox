@@ -14,6 +14,9 @@
 		B613346C207FEC5D00055158 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B613346B207FEC5D00055158 /* Assets.xcassets */; };
 		B613346F207FEC5D00055158 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B613346D207FEC5D00055158 /* LaunchScreen.storyboard */; };
 		B61D1182208649250054B073 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61D1181208649250054B073 /* Message.swift */; };
+		B6583FCB2087A0E800FF4D64 /* AvailableChatroomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6583FCA2087A0E800FF4D64 /* AvailableChatroomsViewController.swift */; };
+		B6583FCE2087A31200FF4D64 /* RoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6583FCC2087A31200FF4D64 /* RoomTableViewCell.swift */; };
+		B6583FCF2087A31200FF4D64 /* RoomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6583FCD2087A31200FF4D64 /* RoomTableViewCell.xib */; };
 		B677902720824D5800893236 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B677902620824D5800893236 /* NetworkService.swift */; };
 		B677902920824FB600893236 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B677902820824FB600893236 /* Helper.swift */; };
 		B69E92E0208274C400790AE7 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B69E92DF208274C400790AE7 /* Info.plist */; };
@@ -35,6 +38,9 @@
 		B613346B207FEC5D00055158 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B613346E207FEC5D00055158 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B61D1181208649250054B073 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		B6583FCA2087A0E800FF4D64 /* AvailableChatroomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableChatroomsViewController.swift; sourceTree = "<group>"; };
+		B6583FCC2087A31200FF4D64 /* RoomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomTableViewCell.swift; sourceTree = "<group>"; };
+		B6583FCD2087A31200FF4D64 /* RoomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomTableViewCell.xib; sourceTree = "<group>"; };
 		B677902620824D5800893236 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		B677902820824FB600893236 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		B69E92DF208274C400790AE7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = buckets/misc/Info.plist; sourceTree = SOURCE_ROOT; };
@@ -110,6 +116,7 @@
 				B69E92E1208275E800790AE7 /* ToolsViewController.swift */,
 				B6A9F2DE20829643009FCA0C /* ReconnectingViewController.swift */,
 				B6F92278208579180018B021 /* ChatViewController.swift */,
+				B6583FCA2087A0E800FF4D64 /* AvailableChatroomsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -163,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				B6F1DE66208641870020F6C5 /* NewMessageTableViewCell.xib */,
+				B6583FCD2087A31200FF4D64 /* RoomTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -171,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				B6F1DE65208641870020F6C5 /* NewMessageTableViewCell.swift */,
+				B6583FCC2087A31200FF4D64 /* RoomTableViewCell.swift */,
 			);
 			path = "Cells Controller";
 			sourceTree = "<group>";
@@ -252,6 +261,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6583FCF2087A31200FF4D64 /* RoomTableViewCell.xib in Resources */,
 				B69E92E0208274C400790AE7 /* Info.plist in Resources */,
 				B6F1DE68208641870020F6C5 /* NewMessageTableViewCell.xib in Resources */,
 				B613346F207FEC5D00055158 /* LaunchScreen.storyboard in Resources */,
@@ -321,8 +331,10 @@
 				B6A9F2DF20829643009FCA0C /* ReconnectingViewController.swift in Sources */,
 				B6133467207FEC5D00055158 /* ViewController.swift in Sources */,
 				B6F1DE67208641870020F6C5 /* NewMessageTableViewCell.swift in Sources */,
+				B6583FCB2087A0E800FF4D64 /* AvailableChatroomsViewController.swift in Sources */,
 				B6A0603C20812E7F00F16624 /* CrashAPI.swift in Sources */,
 				B61D1182208649250054B073 /* Message.swift in Sources */,
+				B6583FCE2087A31200FF4D64 /* RoomTableViewCell.swift in Sources */,
 				B6A0603A20812D4800F16624 /* ViewModel.swift in Sources */,
 				B6133465207FEC5D00055158 /* AppDelegate.swift in Sources */,
 				B6F92279208579180018B021 /* ChatViewController.swift in Sources */,

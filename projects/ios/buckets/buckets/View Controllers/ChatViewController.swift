@@ -55,7 +55,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         handleSocketEvents()
         let downloadChatObject: [String: Any] = [
-            "sceneId": Helper.loggedInUser?.sceneId
+            "sceneId": Helper.selectedSceneID
         ]
         
         Helper.socket.emit("downloadChat", downloadChatObject)
@@ -73,7 +73,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         //Now send the message through socket
         let messageObject: [String: Any] = [
             "text": message.textMessage!,
-            "sceneId": Helper.loggedInUser?.sceneId
+            "sceneId": Helper.selectedSceneID
         ]
         
         Helper.socket.emit("newMessage", messageObject)
@@ -91,7 +91,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     // Conform to delegates
     ///////////////////////////////////
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(messages.count)
         return messages.count
     }
     
