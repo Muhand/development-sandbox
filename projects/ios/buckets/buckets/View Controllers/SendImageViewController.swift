@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol SendImageDelegate: class {
+    func imageSent(message: Message)
+}
+
 class SendImageViewController: UIViewController {
+    
+    weak var delegate:SendImageDelegate?
     
     var chosenImage: UIImage? {
         didSet {
@@ -17,6 +23,7 @@ class SendImageViewController: UIViewController {
     @IBOutlet var chosenImageView: UIImageView!
     @IBOutlet var chosenImageCaption: UITextField!
     @IBOutlet var bottomViewConstraint: NSLayoutConstraint!
+    @IBOutlet var imageCaptionLabel: UITextField!
     
     
     @IBAction func sendChosenImageAction(_ sender: Any) {
@@ -34,6 +41,10 @@ class SendImageViewController: UIViewController {
                 "sceneId": Helper.selectedSceneID!
             ]
             
+            let textMessage = imageCaptionLabel.text ?? ""
+            
+            let m = Message(text: textMessage, image: f, isMe: true)
+            delegate?.imageSent(message: m)
             Helper.socket.emit("newImage", messageObject)
             
         }

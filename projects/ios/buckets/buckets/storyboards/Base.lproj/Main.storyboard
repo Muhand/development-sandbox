@@ -520,6 +520,7 @@
                         <outlet property="bottomViewConstraint" destination="c4o-aq-zEd" id="eef-CQ-T05"/>
                         <outlet property="chosenImageCaption" destination="LW3-50-Azs" id="IWa-HK-Scr"/>
                         <outlet property="chosenImageView" destination="U0S-Q8-Pob" id="LBY-Ns-vvH"/>
+                        <outlet property="imageCaptionLabel" destination="LW3-50-Azs" id="puH-wH-SVc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yN4-nq-fgD" userLabel="First Responder" sceneMemberID="firstResponder"/>

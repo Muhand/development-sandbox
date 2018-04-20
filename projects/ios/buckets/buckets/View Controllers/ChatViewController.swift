@@ -20,7 +20,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         static let newMessage = "newMessageID"
     }
     var imagePicker = UIImagePickerController()
-    var chosenImage = UIImage()
+    var chosenImage:UIImage?
     
     ////////////////////////////
     // Outlets
@@ -94,6 +94,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.messagesTableView.delegate = self
         let messageNib = UINib(nibName: "NewMessageTableViewCell", bundle: nil)
         self.messagesTableView.register(messageNib, forCellReuseIdentifier: TableViewCellIDS.newMessage)
+        self.messagesTableView.estimatedRowHeight = UITableViewAutomaticDimension
+        self.messagesTableView.rowHeight = UITableViewAutomaticDimension
     }
     
     ///////////////////////////////////
@@ -106,7 +108,16 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCellIDS.newMessage, for: indexPath) as! NewMessageTableViewCell
         
-        cell.setMessage(newMessage: messages[indexPath.row])
+        
+        let newMessage = messages[indexPath.row]
+        
+        if (newMessage.imageMessage != nil) {
+            print("TRUEEEEEEEE")
+            cell.setMessage(image: newMessage.imageMessage, newMessage: messages[indexPath.row])
+        } else {
+            print("FALSEEEEEEE")
+            cell.setMessage(newMessage: messages[indexPath.row])
+        }
         
         return cell
     }
@@ -141,7 +152,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         guard let sendImage = self.storyboard?.instantiateViewController(withIdentifier: "sendImage") as? SendImageViewController else {return}
         
         sendImage.chosenImage = pickedImage
-        
+        sendImage.delegate = self
         self.navigationController?.pushViewController(sendImage, animated: true)
     }
     
@@ -218,4 +229,18 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
     }
+}
+
+
+extension ChatViewController:SendImageDelegate {
+    func imageSent(message: Message) {
+        print("---------------------------------")
+        print(message.imageMessage)
+        print(message.isMe)
+        print(message.textMessage)
+        print("---------------------------------")
+        sendMessage(message: message)
+    }
+    
+    
 }
