@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import SwiftyAWS
 
 class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -112,10 +113,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         let newMessage = messages[indexPath.row]
         
         if (newMessage.imageMessage != nil) {
-            print("TRUEEEEEEEE")
             cell.setMessage(image: newMessage.imageMessage, newMessage: messages[indexPath.row])
         } else {
-            print("FALSEEEEEEE")
             cell.setMessage(newMessage: messages[indexPath.row])
         }
         
@@ -172,6 +171,25 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 //            self.view?.addImage(image)
             
             let recievedMessage = Message(text: text, isMe: false)
+            self.insertMessage(message: recievedMessage)
+        }
+        
+        Helper.socket.on("imageReceived") { (data, ack) in
+            let data = JSON(data.first as Any)
+      
+            let imgData = data["image"].stringValue
+            guard let decodedData = Data(base64Encoded: imgData, options: .ignoreUnknownCharacters),
+                let imagev = UIImage(data: decodedData)
+                else { return }
+            let caption = data["caption"].stringValue
+            let timestamp = data["timestamp"].stringValue
+            let highResPath = data["highres"].stringValue
+            print("-----------------------------")
+            print(highResPath)
+            print("-----------------------------")
+            imagev.highResImagePath = highResPath
+            let recievedMessage = Message(text: caption, image: imagev, isMe: false)
+            
             self.insertMessage(message: recievedMessage)
         }
         
@@ -233,14 +251,35 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
 
 extension ChatViewController:SendImageDelegate {
-    func imageSent(message: Message) {
-        print("---------------------------------")
-        print(message.imageMessage)
-        print(message.isMe)
-        print(message.textMessage)
-        print("---------------------------------")
-        sendMessage(message: message)
+    
+    func imageUploaded() {
+        
     }
+    
+    func uploadingImage(message: Message) {
+        insertMessage(message: message)
+    }
+    
+    func imageFailedToUpload(error: ErrorHandling) {
+        
+    }
+    
+//    func uploadingImage() {
+//
+//    }
+//
+//    func imageUploaded() {
+//
+//    }
+//
+//    func imageFailedToUpload(error: NSError) {
+//
+//    }
+//
+//    func imageSent(message: Message) {
+////        sendMessage(message: message)
+//        insertMessage(message: message)
+//    }
     
     
 }

@@ -1,5 +1,11 @@
 PODS:
   - Alamofire (4.6.0)
+  - AWSCognito (2.6.16):
+    - AWSCore (= 2.6.16)
+  - AWSCore (2.6.16)
+  - AWSS3 (2.6.16):
+    - AWSCore (= 2.6.16)
+  - CryptoSwift (0.9.0)
   - Moya (10.0.1):
     - Moya/Core (= 10.0.1)
   - Moya/Core (10.0.1):
@@ -9,30 +15,54 @@ PODS:
   - Socket.IO-Client-Swift (13.1.1):
     - Starscream (~> 3.0.2)
   - Starscream (3.0.4)
+  - SwiftyAWS (0.0.1):
+    - AWSCognito
+    - AWSCore
+    - AWSS3
+    - CryptoSwift (~> 0.8)
   - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
   - Moya (~> 10.0)
   - Socket.IO-Client-Swift (~> 13.1.0)
+  - SwiftyAWS (from `https://github.com/apeguero24/SwiftyAWS.git`)
   - SwiftyJSON
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
+    - AWSCognito
+    - AWSCore
+    - AWSS3
+    - CryptoSwift
     - Moya
     - Result
     - Socket.IO-Client-Swift
     - Starscream
     - SwiftyJSON
 
+EXTERNAL SOURCES:
+  SwiftyAWS:
+    :git: https://github.com/apeguero24/SwiftyAWS.git
+
+CHECKOUT OPTIONS:
+  SwiftyAWS:
+    :commit: b80edf7050bac64bafd21705c5d33b107fa86129
+    :git: https://github.com/apeguero24/SwiftyAWS.git
+
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  AWSCognito: 459ff17ab8aea9a19d57f2c9051cd124e10ef90d
+  AWSCore: 314df68684e338310409c6a3b050e28932deb6ff
+  AWSS3: 218b24bc68387f0c715fd37168f9db6cbec9d0a7
+  CryptoSwift: bca8c5b653dcc2d9734409242a070ff53bafac86
   Moya: 9e621707ff754eeb51ff3ec51a3d54e517c0733a
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   Socket.IO-Client-Swift: f22222913f29801e30ae0df712db663ec096edc2
   Starscream: f5da93fe6984c77b694366bf7299b7dc63a76f26
+  SwiftyAWS: 547fb25b557e2b20849d144181969b950a4cb626
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 0f4eb1b038f7280e6215df69a5f10df0d0e78768
+PODFILE CHECKSUM: 98466ae9e8eb5f7f666abbd5d0b924f35c64ce1c
 
 COCOAPODS: 1.5.0

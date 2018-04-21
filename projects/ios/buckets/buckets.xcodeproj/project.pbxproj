@@ -19,6 +19,7 @@
 		B6583FCF2087A31200FF4D64 /* RoomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6583FCD2087A31200FF4D64 /* RoomTableViewCell.xib */; };
 		B677902720824D5800893236 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B677902620824D5800893236 /* NetworkService.swift */; };
 		B677902920824FB600893236 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B677902820824FB600893236 /* Helper.swift */; };
+		B679EA4D208B74680002F3A6 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B679EA4C208B74680002F3A6 /* ImageExtension.swift */; };
 		B69E92E0208274C400790AE7 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B69E92DF208274C400790AE7 /* Info.plist */; };
 		B69E92E2208275E800790AE7 /* ToolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E92E1208275E800790AE7 /* ToolsViewController.swift */; };
 		B6A0603A20812D4800F16624 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A0603920812D4800F16624 /* ViewModel.swift */; };
@@ -44,6 +45,7 @@
 		B6583FCD2087A31200FF4D64 /* RoomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomTableViewCell.xib; sourceTree = "<group>"; };
 		B677902620824D5800893236 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		B677902820824FB600893236 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		B679EA4C208B74680002F3A6 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		B69E92DF208274C400790AE7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = buckets/misc/Info.plist; sourceTree = SOURCE_ROOT; };
 		B69E92E1208275E800790AE7 /* ToolsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsViewController.swift; sourceTree = "<group>"; };
 		B6A0603920812D4800F16624 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 		B6133463207FEC5C00055158 /* buckets */ = {
 			isa = PBXGroup;
 			children = (
+				B679EA4B208B745B0002F3A6 /* Extensions */,
 				B61D11802086491C0054B073 /* Objects */,
 				B6F1DE64208641550020F6C5 /* Cells Controller */,
 				B6F1DE63208641450020F6C5 /* Cells */,
@@ -157,6 +160,14 @@
 				B613346D207FEC5D00055158 /* LaunchScreen.storyboard */,
 			);
 			path = storyboards;
+			sourceTree = "<group>";
+		};
+		B679EA4B208B745B0002F3A6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B679EA4C208B74680002F3A6 /* ImageExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		B69E92DD208273C600790AE7 /* misc */ = {
@@ -301,20 +312,30 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-buckets/Pods-buckets-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AWSCognito/AWSCognito.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCore/AWSCore.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSS3/AWSS3.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyAWS/SwiftyAWS.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognito.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSS3.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyAWS.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,6 +364,7 @@
 				B6133465207FEC5D00055158 /* AppDelegate.swift in Sources */,
 				B6F92279208579180018B021 /* ChatViewController.swift in Sources */,
 				B69E92E2208275E800790AE7 /* ToolsViewController.swift in Sources */,
+				B679EA4D208B74680002F3A6 /* ImageExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,10 +512,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3Q76DGNCRR;
 				INFOPLIST_FILE = "$(SRCROOT)/buckets/misc/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.muhandjumah.buckets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -509,10 +528,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3Q76DGNCRR;
 				INFOPLIST_FILE = "$(SRCROOT)/buckets/misc/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.muhandjumah.buckets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

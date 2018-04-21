@@ -9,4 +9,5 @@ target 'buckets' do
   pod 'SwiftyJSON' #JSON parsing
   pod 'Moya', '~> 10.0' #Network Abstraction layer
   pod 'Socket.IO-Client-Swift', '~> 13.1.0'
+  pod 'SwiftyAWS', :git => 'https://github.com/apeguero24/SwiftyAWS.git'
 end

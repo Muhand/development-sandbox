@@ -23,7 +23,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k6x-Xr-LkX">
                         <rect key="frame" x="16" y="0.0" width="288" height="222.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPP-fA-B0Y">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPP-fA-B0Y">
                                 <rect key="frame" x="8" y="194" width="272" height="20.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="272" id="iTB-xu-Zag"/>
@@ -38,14 +38,22 @@
                                     <constraint firstAttribute="height" constant="178" id="b5W-Nk-JLh"/>
                                 </constraints>
                             </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="zD4-qV-SuF">
+                                <rect key="frame" x="134" y="87" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="Fva-9O-tFl" firstAttribute="top" secondItem="k6x-Xr-LkX" secondAttribute="top" constant="8" id="28r-sm-scc"/>
                             <constraint firstItem="gPP-fA-B0Y" firstAttribute="top" secondItem="Fva-9O-tFl" secondAttribute="bottom" constant="8" id="2ea-uU-ygV"/>
+                            <constraint firstItem="zD4-qV-SuF" firstAttribute="top" secondItem="k6x-Xr-LkX" secondAttribute="top" constant="87" id="F5d-Pv-hmR"/>
+                            <constraint firstItem="zD4-qV-SuF" firstAttribute="leading" secondItem="k6x-Xr-LkX" secondAttribute="leading" constant="134" id="IKE-eM-XEB"/>
+                            <constraint firstItem="zD4-qV-SuF" firstAttribute="centerX" secondItem="k6x-Xr-LkX" secondAttribute="centerX" id="KOR-Cv-PMU"/>
                             <constraint firstItem="gPP-fA-B0Y" firstAttribute="leading" secondItem="k6x-Xr-LkX" secondAttribute="leading" constant="8" id="Qcb-9Q-gZr"/>
+                            <constraint firstAttribute="trailing" secondItem="zD4-qV-SuF" secondAttribute="trailing" constant="134" id="Txo-1Q-JbC"/>
                             <constraint firstAttribute="trailing" secondItem="Fva-9O-tFl" secondAttribute="trailing" constant="8" id="beO-08-lC6"/>
                             <constraint firstItem="Fva-9O-tFl" firstAttribute="leading" secondItem="k6x-Xr-LkX" secondAttribute="leading" constant="8" id="bez-uW-T4B"/>
+                            <constraint firstItem="gPP-fA-B0Y" firstAttribute="top" secondItem="zD4-qV-SuF" secondAttribute="bottom" constant="87" id="eXW-Vb-Da4"/>
                             <constraint firstAttribute="bottom" secondItem="gPP-fA-B0Y" secondAttribute="bottom" constant="8" id="r2s-D2-8tY"/>
                             <constraint firstAttribute="trailing" secondItem="gPP-fA-B0Y" secondAttribute="trailing" constant="8" id="wFR-Dv-M4i"/>
                         </constraints>
@@ -60,6 +68,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="activityIndicatorOutlet" destination="zD4-qV-SuF" id="mZP-fi-WT3"/>
                 <outlet property="imageViewOutlet" destination="Fva-9O-tFl" id="W5T-7U-e7t"/>
                 <outlet property="leftConstraint" destination="hDg-pj-n9g" id="PSh-Jv-XiI"/>
                 <outlet property="messageBackground" destination="k6x-Xr-LkX" id="s82-GN-6Mw"/>

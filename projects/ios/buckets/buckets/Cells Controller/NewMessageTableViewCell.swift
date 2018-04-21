@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SwiftyAWS
 
-class NewMessageTableViewCell: UITableViewCell {
+class NewMessageTableViewCell: UITableViewCell, UIImageDelegate {
     //////////////////////////////
     //Global variables
     //////////////////////////////
@@ -21,6 +22,7 @@ class NewMessageTableViewCell: UITableViewCell {
     @IBOutlet weak private var messageLabel: UILabel!
     @IBOutlet weak private var messageBackground: UIView!
     @IBOutlet var imageViewOutlet: UIImageView!
+    @IBOutlet var activityIndicatorOutlet: UIActivityIndicatorView!
     
     
     //////////////////////////////
@@ -46,9 +48,14 @@ class NewMessageTableViewCell: UITableViewCell {
         self.messageLabel.text = newMessage.textMessage
         self.messageLabel.textColor = UIColor(hexString: "#000000")
         if let image = image {
+            let newImage = UIImage()
+            newImage.delegate = self
+            newImage.highResImagePath = image.highResImagePath
+//            self.imageValue?.delegate = self
             self.imageValue = image
             self.imageViewOutlet.image = self.imageValue
         } else {
+            self.activityIndicatorOutlet.removeFromSuperview()
             self.imageViewOutlet.removeFromSuperview()
             self.messageLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0).isActive = true
         }
@@ -65,5 +72,18 @@ class NewMessageTableViewCell: UITableViewCell {
         }
     }
     
+    //////////////////////////////////////
+    // Conform to protocols
+    //////////////////////////////////////
+    func highResImageDownloaded(image:UIImage) {
+        print("Downloaded successfully")
+        self.activityIndicatorOutlet.removeFromSuperview()
+        self.imageValue = image
+        self.imageViewOutlet.image = image
+    }
+    
+    func failedToDownloadHighRes(error: ErrorHandling) {
+        print("There was an error")
+    }
     
 }

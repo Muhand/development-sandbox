@@ -1,0 +1,6 @@
+framework module SwiftyAWS {
+  umbrella header "SwiftyAWS-umbrella.h"
+
+  export *
+  module * { export * }
+}

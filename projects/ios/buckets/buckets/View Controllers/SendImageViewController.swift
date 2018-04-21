@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import SwiftyAWS
 
 protocol SendImageDelegate: class {
-    func imageSent(message: Message)
+    func uploadingImage(message: Message)
+    func imageUploaded()
+    func imageFailedToUpload(error: ErrorHandling)
 }
 
 class SendImageViewController: UIViewController {
@@ -28,25 +31,36 @@ class SendImageViewController: UIViewController {
     
     @IBAction func sendChosenImageAction(_ sender: Any) {
         if let pickedImage = chosenImageView.image {
-            let newSize = CGSize(width: 220, height: 260)
-            let f = resizeImage(image: pickedImage, targetSize: newSize)
             
-            let imageData = UIImagePNGRepresentation(f)
-            let base64encoding = imageData?.base64EncodedString(options: .lineLength64Characters)
+            let textMessage = self.imageCaptionLabel.text ?? ""
+            let m = Message(text: textMessage, image: pickedImage, isMe: true)
             
-            //Send the selected image to the socket with its caption
-            let messageObject: [String: Any] = [
-                "img": base64encoding!,
-                "caption": chosenImageCaption.text!,
-                "sceneId": Helper.selectedSceneID!
-            ]
+            delegate?.uploadingImage(message:m)
             
-            let textMessage = imageCaptionLabel.text ?? ""
-            
-            let m = Message(text: textMessage, image: f, isMe: true)
-            delegate?.imageSent(message: m)
-            Helper.socket.emit("newImage", messageObject)
-            
+            pickedImage.s3.upload(type: .jpeg, name: .efficient, permission: .publicReadWrite) { (path, key, error) in
+                if error == nil {
+                    self.delegate?.imageUploaded()
+                    
+                    let newSize = CGSize(width: 220, height: 260)
+                    let f = self.resizeImage(image: pickedImage, targetSize: newSize)
+                    
+                    let imageData = UIImagePNGRepresentation(f)
+                    let base64encoding = imageData?.base64EncodedString(options: .lineLength64Characters)
+                    
+                    //Send the selected image to the socket with its caption
+                    let messageObject: [String: Any] = [
+                        "img": base64encoding!,
+                        "caption": self.chosenImageCaption.text!,
+                        "sceneId": Helper.selectedSceneID!,
+                        "highres": key!
+                    ]
+                    
+                    Helper.socket.emit("newImage", messageObject)
+                    
+                } else {
+                    self.delegate?.imageFailedToUpload(error: error!)
+                }
+            }
         }
         
         //Dismiss the view
@@ -59,6 +73,7 @@ class SendImageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpAWS()
         self.hideKeyboardWhenTappedAround()
         
         if chosenImage != nil {
@@ -83,6 +98,10 @@ class SendImageViewController: UIViewController {
         chosenImageView.image = chosenImage
     }
     
+    private func setUpAWS() {
+        SwiftyAWS.main.bucketName = "crash-chat"
+        SwiftyAWS.main.configure(type: .USEast1, identity: "us-east-1:6a386b3c-11f5-4fba-b427-2cf6b9a00cf1")
+    }
     
     //////////////////////////////////////////////////////////////
     func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
