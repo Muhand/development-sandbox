@@ -65,7 +65,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         handleSocketEvents()
         let downloadChatObject: [String: Any] = [
-            "sceneId": Helper.selectedSceneID
+            "sceneId": Helper.selectedSceneID!
         ]
         
         Helper.socket.emit("downloadChat", downloadChatObject)
@@ -83,7 +83,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         //Now send the message through socket
         let messageObject: [String: Any] = [
             "text": message.textMessage!,
-            "sceneId": Helper.selectedSceneID
+            "sceneId": Helper.selectedSceneID!
         ]
         
         Helper.socket.emit("newMessage", messageObject)
@@ -122,26 +122,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-//        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-//
-////            let newSize = CGSize(width: 220, height: 260)
-////            let f = resizeImage(image: pickedImage, targetSize: newSize)
-//
-////            let senderNameTmp = "Me"
-////            let isMeTmp = true
-////            let newMessage = ImageTextMessage(image: f, senderName: senderNameTmp, isMe: isMeTmp)
-//
-//            //Append the new message
-////            messages.append(newMessage)
-//
-//            //Refresh the table
-////            messagesTableView.reloadData()
-//
-////            let imageData = UIImagePNGRepresentation(f)
-////            let base64encoding = imageData?.base64EncodedString(options: .lineLength64Characters)
-//
-////            Helper.socket.emit("new_image", base64encoding!)
-//        }
         
         guard let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {return}
         
@@ -184,9 +164,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             let caption = data["caption"].stringValue
             let timestamp = data["timestamp"].stringValue
             let highResPath = data["highres"].stringValue
-            print("-----------------------------")
-            print(highResPath)
-            print("-----------------------------")
+            
             imagev.highResImagePath = highResPath
             let recievedMessage = Message(text: caption, image: imagev, isMe: false)
             
@@ -194,13 +172,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         Helper.socket.on("chatHistory") { (data, ack) in
+            
             let data = JSON(data.first as Any)
-            print(data)
+            
             for messageJSON in data["messages"].arrayValue {
                 let text = messageJSON["text"].stringValue
                 let timestamp = messageJSON["timestamp"].stringValue
                 let by = messageJSON["by"].stringValue
-                print(text)
+                
                 
                 if by == Helper.loggedInUser?.id {
                     let recievedMessage = Message(text: text, isMe: true)
@@ -211,9 +190,27 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             }
             
-//            let recievedMessage = Message(text: text, isMe: false)
-//            self.insertMessage(message: recievedMessage)
+            for imageJSON in data["slideshow"].arrayValue {
+                let imgData = imageJSON["lowres"].stringValue
+                guard let lowresImage = Data(base64Encoded: imgData, options: .ignoreUnknownCharacters),
+                    let imagev = UIImage(data: lowresImage)
+                    else { return }
+                let highres = imageJSON["highres"].stringValue
+                let timestamp = imageJSON["timestamp"].stringValue
+                let by = imageJSON["by"].stringValue
+                imagev.highResImagePath = highres
+                
+                if by == Helper.loggedInUser?.id {
+                    let recievedMessage = Message(text: "", image: imagev, isMe: true)
+                    self.insertMessage(message: recievedMessage)
+                } else {
+                    let recievedMessage = Message(text: "", image: imagev, isMe: false)
+                    self.insertMessage(message: recievedMessage)
+                }
+            }
+            
         }
+        
     }
     
     func insertMessage(message:Message) {

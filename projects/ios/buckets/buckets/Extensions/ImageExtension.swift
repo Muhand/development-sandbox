@@ -47,7 +47,7 @@ extension UIImage {
     func downloadHighResImage() {
         if (imageDelegate != nil) {
             setUpAWS()
-            print("WORKSSSS")
+//            print("WORKSSSS")
 //            if let dotRange = highResImagePath.range(of: ".") {
 //                highResImagePath.removeSubrange(dotRange.lowerBound..<str.endIndex)
 //            }
@@ -58,17 +58,18 @@ extension UIImage {
 //
 //            var truncated = highResImagePath.removeSubrange.substring(to: highResImagePath.removeSubrange.index(before: highResImagePath.removeSubrange.endIndex-4))
 
-            
-            let endIndex = highResImagePath.index(highResImagePath.endIndex, offsetBy: -5)
-            let truncated = highResImagePath.substring(to: endIndex)
-            
-            
-            truncated.s3.download(imageExtension: .jpeg) { (image, path, error) in
-                if (error == nil) {
-                    self.delegate.highResImageDownloaded(image: image!)
-                } else {
-                    print(error)
-                    self.delegate.failedToDownloadHighRes(error: error!)
+            if highResImagePath.count > 1 {
+                let endIndex = highResImagePath.index(highResImagePath.endIndex, offsetBy: -5)
+                let truncated = highResImagePath.substring(to: endIndex)
+                
+                
+                truncated.s3.download(imageExtension: .jpeg) { (image, path, error) in
+                    if (error == nil) {
+                        self.delegate.highResImageDownloaded(image: image!)
+                    } else {
+                        print(error)
+                        self.delegate.failedToDownloadHighRes(error: error!)
+                    }
                 }
             }
         }
