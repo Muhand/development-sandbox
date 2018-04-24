@@ -21,7 +21,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         static let newMessage = "newMessageID"
     }
     var imagePicker = UIImagePickerController()
-    var chosenImage:UIImage?
+//    var chosenImage:UIImage?
     
     ////////////////////////////
     // Outlets
@@ -121,6 +121,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = UIColor.clear
+    }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         guard let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {return}
@@ -198,7 +202,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let highres = imageJSON["highres"].stringValue
                 let timestamp = imageJSON["timestamp"].stringValue
                 let by = imageJSON["by"].stringValue
+                
+                print("Setting highres...")
                 imagev.highResImagePath = highres
+                print("highres is done...")
                 
                 if by == Helper.loggedInUser?.id {
                     let recievedMessage = Message(text: "", image: imagev, isMe: true)

@@ -11,6 +11,7 @@ import UIKit
 import SwiftyAWS
 
 protocol UIImageDelegate {
+    func highResImageIsDownloading()
     func highResImageDownloaded(image:UIImage)
     func failedToDownloadHighRes(error:ErrorHandling)
 
@@ -36,7 +37,6 @@ extension UIImage {
     var delegate: UIImageDelegate {
         set {
             print("SET DELEGATE To")
-            print(newValue)
             imageDelegate = newValue
         }
         get {
@@ -46,6 +46,7 @@ extension UIImage {
 
     func downloadHighResImage() {
         if (imageDelegate != nil) {
+            print("<><><><><><><><><><><><><><><><>><><><><><><><")
             setUpAWS()
 //            print("WORKSSSS")
 //            if let dotRange = highResImagePath.range(of: ".") {
@@ -59,6 +60,7 @@ extension UIImage {
 //            var truncated = highResImagePath.removeSubrange.substring(to: highResImagePath.removeSubrange.index(before: highResImagePath.removeSubrange.endIndex-4))
 
             if highResImagePath.count > 1 {
+                self.delegate.highResImageIsDownloading()
                 let endIndex = highResImagePath.index(highResImagePath.endIndex, offsetBy: -5)
                 let truncated = highResImagePath.substring(to: endIndex)
                 

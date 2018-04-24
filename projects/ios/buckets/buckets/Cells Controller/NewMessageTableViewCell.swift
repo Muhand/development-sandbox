@@ -14,7 +14,6 @@ class NewMessageTableViewCell: UITableViewCell, UIImageDelegate {
     //Global variables
     //////////////////////////////
     var message: Message?
-    var imageValue: UIImage?
     
     //////////////////////////////
     //Outlets variables
@@ -48,12 +47,9 @@ class NewMessageTableViewCell: UITableViewCell, UIImageDelegate {
         self.messageLabel.text = newMessage.textMessage
         self.messageLabel.textColor = UIColor(hexString: "#000000")
         if let image = image {
-            let newImage = UIImage()
-            newImage.delegate = self
-            newImage.highResImagePath = image.highResImagePath
-//            self.imageValue?.delegate = self
-            self.imageValue = image
-            self.imageViewOutlet.image = self.imageValue
+            image.delegate = self
+            print("x----------------------------x")
+            self.imageViewOutlet.image = image
         } else {
             self.activityIndicatorOutlet.removeFromSuperview()
             self.imageViewOutlet.removeFromSuperview()
@@ -75,10 +71,12 @@ class NewMessageTableViewCell: UITableViewCell, UIImageDelegate {
     //////////////////////////////////////
     // Conform to protocols
     //////////////////////////////////////
+    func highResImageIsDownloading() {
+        print("Downloading...")
+    }
     func highResImageDownloaded(image:UIImage) {
         print("Downloaded successfully")
         self.activityIndicatorOutlet.removeFromSuperview()
-        self.imageValue = image
         self.imageViewOutlet.image = image
     }
     
