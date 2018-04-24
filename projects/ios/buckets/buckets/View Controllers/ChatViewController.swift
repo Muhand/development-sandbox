@@ -108,7 +108,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCellIDS.newMessage, for: indexPath) as! NewMessageTableViewCell
-        
+
         
         let newMessage = messages[indexPath.row]
         
@@ -144,79 +144,79 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     ///////////////////////////////////
     func handleSocketEvents() {
         Helper.socket.on("messageRecieved") { (data, ack) in
-            let data = JSON(data.first as Any)
-            let text = data["text"].stringValue
-            let timestamp = data["timestamp"].stringValue
-            
-//            guard let decodedData = Data(base64Encoded: imageData, options: .ignoreUnknownCharacters),
-//                let image = UIImage(data: decodedData)
-//                else { return }
+//            let data = JSON(data.first as Any)
+//            let text = data["text"].stringValue
+//            let timestamp = data["timestamp"].stringValue
 //
-//            self.view?.addImage(image)
-            
-            let recievedMessage = Message(text: text, isMe: false)
-            self.insertMessage(message: recievedMessage)
+////            guard let decodedData = Data(base64Encoded: imageData, options: .ignoreUnknownCharacters),
+////                let image = UIImage(data: decodedData)
+////                else { return }
+////
+////            self.view?.addImage(image)
+//
+//            let recievedMessage = Message(text: text, isMe: false)
+//            self.insertMessage(message: recievedMessage)
         }
         
-        Helper.socket.on("imageReceived") { (data, ack) in
-            let data = JSON(data.first as Any)
-      
-            let imgData = data["image"].stringValue
-            guard let decodedData = Data(base64Encoded: imgData, options: .ignoreUnknownCharacters),
-                let imagev = UIImage(data: decodedData)
-                else { return }
-            let caption = data["caption"].stringValue
-            let timestamp = data["timestamp"].stringValue
-            let highResPath = data["highres"].stringValue
-            
-            imagev.highResImagePath = highResPath
-            let recievedMessage = Message(text: caption, image: imagev, isMe: false)
-            
-            self.insertMessage(message: recievedMessage)
+        Helper.socket.on("slideshowReceived") { (data, ack) in
+//            let data = JSON(data.first as Any)
+//      
+//            let imgData = data["image"].stringValue
+//            guard let decodedData = Data(base64Encoded: imgData, options: .ignoreUnknownCharacters),
+//                let imagev = UIImage(data: decodedData)
+//                else { return }
+//            let caption = data["caption"].stringValue
+//            let timestamp = data["timestamp"].stringValue
+//            let highResPath = data["highres"].stringValue
+//            
+//            imagev.highResImagePath = highResPath
+//            let recievedMessage = Message(text: caption, image: imagev, isMe: false)
+//            
+//            self.insertMessage(message: recievedMessage)
         }
         
-        Helper.socket.on("chatHistory") { (data, ack) in
-            
-            let data = JSON(data.first as Any)
-            
-            for messageJSON in data["messages"].arrayValue {
-                let text = messageJSON["text"].stringValue
-                let timestamp = messageJSON["timestamp"].stringValue
-                let by = messageJSON["by"].stringValue
-                
-                
-                if by == Helper.loggedInUser?.id {
-                    let recievedMessage = Message(text: text, isMe: true)
-                    self.insertMessage(message: recievedMessage)
-                } else {
-                    let recievedMessage = Message(text: text, isMe: false)
-                    self.insertMessage(message: recievedMessage)
-                }
-            }
-            
-            for imageJSON in data["slideshow"].arrayValue {
-                let imgData = imageJSON["lowres"].stringValue
-                guard let lowresImage = Data(base64Encoded: imgData, options: .ignoreUnknownCharacters),
-                    let imagev = UIImage(data: lowresImage)
-                    else { return }
-                let highres = imageJSON["highres"].stringValue
-                let timestamp = imageJSON["timestamp"].stringValue
-                let by = imageJSON["by"].stringValue
-                
-                print("Setting highres...")
-                imagev.highResImagePath = highres
-                print("highres is done...")
-                
-                if by == Helper.loggedInUser?.id {
-                    let recievedMessage = Message(text: "", image: imagev, isMe: true)
-                    self.insertMessage(message: recievedMessage)
-                } else {
-                    let recievedMessage = Message(text: "", image: imagev, isMe: false)
-                    self.insertMessage(message: recievedMessage)
-                }
-            }
-            
-        }
+//        Helper.socket.on("chatHistory") { (data, ack) in
+//
+//            let data = JSON(data.first as Any)
+//
+//            for messageJSON in data["messages"].arrayValue {
+//                let text = messageJSON["text"].stringValue
+//                let timestamp = messageJSON["timestamp"].stringValue
+//                let by = messageJSON["by"].stringValue
+//
+//
+//                if by == Helper.loggedInUser?.id {
+//                    let recievedMessage = Message(text: text, isMe: true)
+//                    self.insertMessage(message: recievedMessage)
+//                } else {
+//                    let recievedMessage = Message(text: text, isMe: false)
+//                    self.insertMessage(message: recievedMessage)
+//                }
+//            }
+//
+//            for imageJSON in data["slideshow"].arrayValue {
+//                let imgData = imageJSON["lowres"].stringValue
+//                guard let lowresImage = Data(base64Encoded: imgData, options: .ignoreUnknownCharacters),
+//                    let imagev = UIImage(data: lowresImage)
+//                    else { return }
+//                let highres = imageJSON["highres"].stringValue
+//                let timestamp = imageJSON["timestamp"].stringValue
+//                let by = imageJSON["by"].stringValue
+//
+//                print("Setting highres...")
+//                imagev.highResImagePath = highres
+//                print("highres is done...")
+//
+//                if by == Helper.loggedInUser?.id {
+//                    let recievedMessage = Message(text: "", image: imagev, isMe: true)
+//                    self.insertMessage(message: recievedMessage)
+//                } else {
+//                    let recievedMessage = Message(text: "", image: imagev, isMe: false)
+//                    self.insertMessage(message: recievedMessage)
+//                }
+//            }
+//
+//        }
         
     }
     
